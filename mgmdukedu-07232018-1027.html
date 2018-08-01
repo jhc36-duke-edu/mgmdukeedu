@@ -641,7 +641,7 @@ Landmark elements (&lt;main&gt;, &lt;nav&gt;, etc.) are used to improve the keyb
 
 <p>This rule is subjective, but in this scenario it is possible to use &quot;Live&quot; text, meaning it is real HTML text overlaid on a background image. </p>
 
-<p>Technically, tt is possible to put all these words in the <code>alt</code> attribute, but we have gotten in trouble for doing so. Due to its prominence as the largest image on the website and being on the front page we need to use real text.</p>
+<p>Technically, it is possible to put all these words in the <code>alt</code> attribute, but we have gotten in trouble for doing so. Due to its prominence as the largest image on the website and being on the front page we need to use real text.</p>
 
 <h4 id="toc_7">Suggested solution:</h4>
 
@@ -701,11 +701,13 @@ Fix all of the following:
 
 <p>Low-contrast text is difficult or impossible for many users to read. <a href="https://dequeuniversity.com/rules/axe/2.2/color-contrast?application=lighthouse">Learn more</a>.</p>
 
-<h3 id="toc_13">The element <em>&quot;&quot;</em> has low contrast.</h3>
+<p><input type="image" src="https://mgm.duke.edu/wp-content/themes/som-theme/library/images/icon-search.png" border="0" alt="Submit" class="submit-icon"></p>
+
+<h3 id="toc_13">The element <em>&quot;Search&quot;</em> has low contrast.</h3>
 
 <p><strong>Visual location:</strong></p>
 
-<p><img src="https://via.placeholder.com/150x50" alt=" text with low contrast"></p>
+<p><img src="assets/color-search.png" alt=" text with low contrast"></p>
 
 <p><strong>HTML location:</strong></p>
 
@@ -713,7 +715,18 @@ Fix all of the following:
 
 <h4 id="toc_14">Suggested solution:</h4>
 
-<p>Element has insufficient color contrast of 2 (foreground color: #ffffff, background color: #b7b7b7, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1</p>
+<p>Element has insufficient color contrast of 2 (foreground color: #ffffff, background color: #b7b7b7, font size: 12.0pt, font weight: normal). Expected contrast ratio of 3:1</p>
+
+<p>Change to the closest compliant color of #949494
+https://webaim.org/resources/contrastchecker/?fcolor=FFFFFF&amp;bcolor=767676</p>
+
+<div><pre><code class="language-css">.header .search .widget_search .search-input {
+  float: right;
+  line-height: 20px;
+-  background: #767676;
++  background: #949494;
+  color: #fff;
+}</code></pre></div>
 
 <p><details>
 <summary><em>Additional debugging details</em></summary>
@@ -728,13 +741,47 @@ Fix any of the following:
 <br>Element has insufficient color contrast of 2 (foreground color: #ffffff, background color: #b7b7b7, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
 </details></p>
 
+<p><br></p>
+
 <hr>
 
 <p><br></p>
 
-<h2 id="toc_15">Inaccurate or missing <code>alt</code> text in images</h2>
+<h2 id="toc_15">Input has no value</h2>
 
-<h3 id="toc_16">Insufficient <code>alt</code> text in logo</h3>
+<p>Search element has not have a <code>value</code> or text inside it. It does have an <code>alt</code> attribute, but <code>alt</code> is only a valid attribute on images.</p>
+
+<h3 id="toc_16">Search box</h3>
+
+<p><strong>Visual location:</strong></p>
+
+<p><img src="assets/value-search.png" alt="search no value"></p>
+
+<p><strong>HTML location:</strong></p>
+
+<div><pre><code class="language-markup">&lt;input type=&quot;image&quot; src=&quot;https://mgm.duke.edu/wp-content/themes/som-theme/library/images/icon-search.png&quot; border=&quot;0&quot; alt=&quot;Submit&quot; class=&quot;submit-icon&quot;&gt;</code></pre></div>
+
+<h4 id="toc_17">Suggested solution:</h4>
+
+<p>Add value=&quot;Search&quot;. Remove alt=&quot;search&quot;</p>
+
+<div><pre><code class="language-markup">&lt;input type=&quot;image&quot; 
+       src=&quot;https://mgm.duke.edu/wp-content/themes/som-theme/library/images/icon-search.png&quot; 
+       border=&quot;0&quot; 
+-       alt=&quot;Submit&quot;
++       value=&quot;search&quot;
+       class=&quot;submit-icon&quot;&gt;
+</code></pre></div>
+
+<p><br></p>
+
+<hr>
+
+<p><br></p>
+
+<h2 id="toc_18">Inaccurate or missing <code>alt</code> text in images</h2>
+
+<h3 id="toc_19">Insufficient <code>alt</code> text in logo</h3>
 
 <p>Link text (and alternate text for images, when used as links) that is discernible, unique, and focusable improves the navigation experience for screen reader users. <a href="https://dequeuniversity.com/rules/axe/2.2/link-name?application=lighthouse">Learn more</a>.</p>
 
@@ -750,25 +797,25 @@ Fix any of the following:
   &lt;/a&gt;
 &lt;/div&gt;</code></pre></div>
 
-<h4 id="toc_17">Suggested solution:</h4>
+<h4 id="toc_20">Suggested solution:</h4>
 
 <p>Change <code>alt</code> text to &quot;Duke Molecular Genetics and Microbiology&quot;</p>
 
-<h3 id="toc_18">People photos missing <code>alt</code> text on homepage</h3>
+<h3 id="toc_21">People photos missing <code>alt</code> text on homepage</h3>
 
 <p>Technically, it is permissible to use the <code>alt</code> attribute if the image is superfluous or the text surrounding the images is sufficient to describe it. So, by the letter of the law this technically this is not a real concern.  However, in litigation, it has been my experience that lawyers do not understand that and have brought it up to support claims of a website being inaccessible. </p>
 
-<h4 id="toc_19">Suggested solution:</h4>
+<h4 id="toc_22">Suggested solution:</h4>
 
 <p>Add <code>alt</code> text to all the images.</p>
 
-<h2 id="toc_20">Some link text is not descriptive</h2>
+<h2 id="toc_23">Some link text is not descriptive</h2>
 
 <p>Link text (and alternate text for images, when used as links) that is discernible, unique, and focusable improves the navigation experience for screen reader users. <a href="https://dequeuniversity.com/rules/axe/2.2/link-name?application=lighthouse">Learn more</a>.</p>
 
 <p>If a screen reader user comes across the link, it will just read &quot;Here&quot; which does not provide context on what the link is or where it will take them.</p>
 
-<h3 id="toc_21">Click &quot;here&quot; near footer</h3>
+<h3 id="toc_24">Click &quot;here&quot; near footer</h3>
 
 <p><strong>Visual location:</strong></p>
 
@@ -778,11 +825,11 @@ Fix any of the following:
 
 <div><pre><code class="language-markup">&lt;em&gt;(Click &lt;a title=&quot;NEWS&quot; href=&quot;/about-the-department/news-3/&quot;&gt;here&lt;/a&gt; for more news articles)&lt;/em&gt;</code></pre></div>
 
-<h4 id="toc_22">Suggested solution:</h4>
+<h4 id="toc_25">Suggested solution:</h4>
 
 <p>Make the entire sentences a link, or anything that is descriptive.</p>
 
-<h3 id="toc_23">More &quot;link&quot; in appears multiple times on <a href="https://mgm.duke.edu/about-the-department/">About the Department page</a> and other pages</h3>
+<h3 id="toc_26">More &quot;link&quot; in appears multiple times on <a href="https://mgm.duke.edu/about-the-department/">About the Department page</a> and other pages</h3>
 
 <p>If a screen reader user comes across the link, it will just read &quot;link&quot; which does not provide context on what the link is or where it will take them.</p>
 
@@ -800,7 +847,7 @@ Fix any of the following:
   for faculty highlighted publications.
 &lt;/p&gt;</code></pre></div>
 
-<h4 id="toc_24">Suggested solution:</h4>
+<h4 id="toc_27">Suggested solution:</h4>
 
 <p>Make the entire sentences a link, or anything that is descriptive.</p>
 
@@ -810,15 +857,15 @@ Fix any of the following:
 
 <p><br></p>
 
-<h2 id="toc_25">Inaccessible PDF</h2>
+<h2 id="toc_28">Inaccessible PDF</h2>
 
 <p>All the WCAG rules about web content also apply to documents, because they are also web content.  This means that all documents need to be accessible.</p>
 
-<h3 id="toc_26">The &quot;Rhoda Benham Dinner Talk&quot; Doc</h3>
+<h3 id="toc_29">The &quot;Rhoda Benham Dinner Talk&quot; Doc</h3>
 
 <p><a href="https://mgm.duke.edu/wp-content/uploads/2018/06/Rhoda-Benham-dinner-talk-finalized.doc">https://mgm.duke.edu/wp-content/uploads/2018/06/Rhoda-Benham-dinner-talk-finalized.doc</a></p>
 
-<h3 id="toc_27">and &quot;Rhoda Benham award talk 2018&quot; PDF are not accessible</h3>
+<h3 id="toc_30">and &quot;Rhoda Benham award talk 2018&quot; PDF are not accessible</h3>
 
 <p><a href="https://mgm.duke.edu/wp-content/uploads/2018/06/Rhoda-Benham-award-talk-2018compact.pdf">https://mgm.duke.edu/wp-content/uploads/2018/06/Rhoda-Benham-award-talk-2018compact.pdf</a></p>
 
@@ -828,7 +875,7 @@ Fix any of the following:
 
 <p>It is missing alt text, tags, reading order, etc. <a href="https://helpx.adobe.com/acrobat/using/create-verify-pdf-accessibility.html#check_accessibility_of_PDFs">Learn more about PDF remediation</a></p>
 
-<h4 id="toc_28">Suggested solution:</h4>
+<h4 id="toc_31">Suggested solution:</h4>
 
 <p>Making the PDF document accessible is too difficult to provide solution to here. Please attend our &quot;PDF and Accessible Document Workshop&quot; on November 13th.  We will send an email reminder out to all the Web Accessibility Liaisons closer to the training date. Please save the date. PDF accessibility is one of Duke&#39;s number one risks right now. We are making a concerted effort to mitigate the risk.</p>
 
@@ -852,6 +899,14 @@ var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScop
 
 <script type="text/javascript">
 Prism.languages.markup={comment:/<!--[\w\W]*?-->/,prolog:/<\?[\w\W]+?\?>/,doctype:/<!DOCTYPE[\w\W]+?>/,cdata:/<!\[CDATA\[[\w\W]*?]]>/i,tag:{pattern:/<\/?(?!\d)[^\s>\/=.$<]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\\1|\\?(?!\1)[\w\W])*\1|[^\s'">=]+))?)*\s*\/?>/i,inside:{tag:{pattern:/^<\/?[^\s>\/]+/i,inside:{punctuation:/^<\/?/,namespace:/^[^\s>\/:]+:/}},"attr-value":{pattern:/=(?:('|")[\w\W]*?(\1)|[^\s>]+)/i,inside:{punctuation:/[=>"']/}},punctuation:/\/?>/,"attr-name":{pattern:/[^\s>\/]+/,inside:{namespace:/^[^\s>\/:]+:/}}}},entity:/&#?[\da-z]{1,8};/i},Prism.hooks.add("wrap",function(a){"entity"===a.type&&(a.attributes.title=a.content.replace(/&amp;/,"&"))}),Prism.languages.xml=Prism.languages.markup,Prism.languages.html=Prism.languages.markup,Prism.languages.mathml=Prism.languages.markup,Prism.languages.svg=Prism.languages.markup;
+</script>
+
+<script type="text/javascript">
+Prism.languages.css={comment:/\/\*[\w\W]*?\*\//,atrule:{pattern:/@[\w-]+?.*?(;|(?=\s*\{))/i,inside:{rule:/@[\w-]+/}},url:/url\((?:(["'])(\\(?:\r\n|[\w\W])|(?!\1)[^\\\r\n])*\1|.*?)\)/i,selector:/[^\{\}\s][^\{\};]*?(?=\s*\{)/,string:/("|')(\\(?:\r\n|[\w\W])|(?!\1)[^\\\r\n])*\1/,property:/(\b|\B)[\w-]+(?=\s*:)/i,important:/\B!important\b/i,"function":/[-a-z0-9]+(?=\()/i,punctuation:/[(){};:]/},Prism.languages.css.atrule.inside.rest=Prism.util.clone(Prism.languages.css),Prism.languages.markup&&(Prism.languages.insertBefore("markup","tag",{style:{pattern:/(<style[\w\W]*?>)[\w\W]*?(?=<\/style>)/i,lookbehind:!0,inside:Prism.languages.css,alias:"language-css"}}),Prism.languages.insertBefore("inside","attr-value",{"style-attr":{pattern:/\s*style=("|').*?\1/i,inside:{"attr-name":{pattern:/^\s*style/i,inside:Prism.languages.markup.tag.inside},punctuation:/^\s*=\s*['"]|['"]\s*$/,"attr-value":{pattern:/.+/i,inside:Prism.languages.css}},alias:"language-css"}},Prism.languages.markup.tag));
+</script>
+
+<script type="text/javascript">
+Prism.languages.css.selector={pattern:/[^\{\}\s][^\{\}]*(?=\s*\{)/,inside:{"pseudo-element":/:(?:after|before|first-letter|first-line|selection)|::[-\w]+/,"pseudo-class":/:[-\w]+(?:\(.*\))?/,"class":/\.[-:\.\w]+/,id:/#[-:\.\w]+/}},Prism.languages.insertBefore("css","function",{hexcode:/#[\da-f]{3,6}/i,entity:/\\[\da-f]{1,8}/i,number:/[\d%\.]+/});
 </script>
 
 <script type="text/javascript">
